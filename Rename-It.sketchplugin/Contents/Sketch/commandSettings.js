@@ -383,24 +383,24 @@ function theUI(context, data, options) {
     onlyShowCloseButton: true,
     hideTitleBar: false,
     shouldKeepAround: true,
-    handlers: {
-      getLocation: function () {
-        function getLocation() {
-          var whereTo = options.redirectTo;
-          webUI.eval("window.redirectTo=\"" + String(whereTo) + "\"");
-        }
+    /* eslint-disable */
+    frameLoadDelegate: {
+      "webView:didCommitLoadForFrame:": function () {
+        function webViewDidCommitLoadForFrame(webView, webFrame) {
+          // Redirect
+          webUI.eval("window.redirectTo=\"" + String(options.redirectTo) + "\"");
 
-        return getLocation;
-      }(),
-      getData: function () {
-        function getData() {
+          // the data
           var history = (0, _History.getHistory)();
           webUI.eval("window.data=" + String(JSON.stringify(data)));
           webUI.eval("window.dataHistory=" + String(JSON.stringify(history)));
         }
 
-        return getData;
-      }(),
+        return webViewDidCommitLoadForFrame;
+      }()
+    },
+    /* eslint-enable */
+    handlers: {
       close: function () {
         function close() {
           webUI.close();

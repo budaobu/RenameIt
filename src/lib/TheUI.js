@@ -44,16 +44,20 @@ export default function theUI(context, data, options) {
     onlyShowCloseButton: true,
     hideTitleBar: false,
     shouldKeepAround: true,
-    handlers: {
-      getLocation: () => {
-        const whereTo = options.redirectTo
-        webUI.eval(`window.redirectTo="${whereTo}"`)
-      },
-      getData: () => {
+    /* eslint-disable */
+    frameLoadDelegate: {
+      "webView:didCommitLoadForFrame:": function(webView, webFrame) {
+        // Redirect
+        webUI.eval(`window.redirectTo="${options.redirectTo}"`)
+
+        // the data
         const history = getHistory()
         webUI.eval(`window.data=${JSON.stringify(data)}`)
         webUI.eval(`window.dataHistory=${JSON.stringify(history)}`)
       },
+    },
+    /* eslint-enable */
+    handlers: {
       close: () => {
         webUI.close()
       },
