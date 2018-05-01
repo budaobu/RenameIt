@@ -7,7 +7,9 @@
  */
 
 import React from "react"
+import { MentionsInput, Mention } from "react-mentions"
 import HistoryDropdown from "./HistoryDropdown"
+import { autoData } from "../../../src/lib/Constants"
 
 class Input extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -44,7 +46,11 @@ class Input extends React.Component {
       <div className={`inputWrapper ${this.props.wrapperClass}`}>
         <label htmlFor={this.props.id}>{this.props.forName}</label>
         <span className={clearBtnClass}>
-          <input
+          <MentionsInput singleLine value={`${this.props.value}`}>
+            <Mention trigger="%" data={autoData} />
+          </MentionsInput>
+
+          {/* <input
             type={this.props.type}
             id={this.props.id}
             value={this.props.value}
@@ -56,7 +62,7 @@ class Input extends React.Component {
             autoCapitalize="off"
             spellCheck="false"
             min="0"
-          />
+          /> */}
           {historyDropdown}
         </span>
       </div>

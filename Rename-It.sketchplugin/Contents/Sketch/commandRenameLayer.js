@@ -2751,7 +2751,7 @@ function _default(context) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.exclamations = exports.mockHistory = exports.mockData = exports.mixpanelId = exports.testData = void 0;
+exports.autoData = exports.exclamations = exports.mockHistory = exports.mockData = exports.mixpanelId = exports.testData = void 0;
 /**
  * @Author: rodrigo
  * @Date:   2017-11-11T16:21:35-08:00
@@ -2790,6 +2790,29 @@ var mockHistory = {
 exports.mockHistory = mockHistory;
 var exclamations = ["Boo-yah!", "Olé!", "Hooray!", "Great Success!", "Abracadabra!", "Geronimo!"];
 exports.exclamations = exclamations;
+var autoData = [{
+  id: "walter",
+  display: "Walter White"
+}, {
+  id: "jesse",
+  display: "Jesse Pinkman"
+}, {
+  id: "gus",
+  display: 'Gustavo "Gus" Fring'
+}, {
+  id: "saul",
+  display: "Saul Goodman"
+}, {
+  id: "hank",
+  display: "Hank Schrader"
+}, {
+  id: "skyler",
+  display: "Skyler White"
+}, {
+  id: "mike",
+  display: "Mike Ehrmantraut"
+}];
+exports.autoData = autoData;
 
 /***/ }),
 
